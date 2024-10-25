@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/header :: head}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+<header th:replace="~{fragmentos/header :: header}"></header>
+<section class="container mt-4">
+    <h2>Registrar Atención</h2>
+    <form action="#" th:action="@{/api/atenciones}" th:object="${nuevoTratamiento}" method="post" class="border p-4 rounded">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre del Tratamiento:</label>
+            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" />
+        </div>
+    
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción:</label>
+            <textarea id="descripcion" th:field="*{descripcion}" class="form-control" rows="3"></textarea>
+        </div>
+        
+        <div class="mb-3">
+            <label for="duracion" class="form-label">Duración:</label>
+            <input type="text" id="duracion" th:field="*{duracion}" class="form-control" />
+        </div>
+    
+        <div class="mb-3">
+            <label for="costo" class="form-label">Costo:</label>
+            <input type="number" id="costo" th:field="*{costo}" class="form-control" />
+        </div>
+        
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha:</label>
+            <input type="date" id="fecha" th:field="*{fecha}" class="form-control">
+        </div>
+        
+        <div class="mb-3">
+            <label for="paciente" class="form-label">Paciente:</label>
+            <select id="paciente" th:field="*{paciente.id}" class="form-select">
+                <option th:each="paciente : ${pacientes}" 
+                        th:value="${paciente.id}" 
+                        th:text="${paciente.nombre}"></option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn btn-success">Registrar Atención</button>
+    </form>    
+</section>
+
+<section class="container mt-4">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Paciente</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tratamiento : ${tratamientos}">
+                <td th:text="${tratamiento.descripcion}"></td>
+                <td th:text="${tratamiento.fecha}"></td>
+                <td th:text="${tratamiento.paciente.nombre}"></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<footer th:replace="~{fragmentos/footer :: footer}"></footer>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.cibertec.examenfinal.jaremgallegos.modelo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -30,6 +31,7 @@ public class Tratamiento {
     private String descripcion;
     private String duracion;
     private double costo;
+    private LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "paciente_id")

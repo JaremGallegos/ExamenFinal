@@ -29,15 +29,21 @@ public class HistorialOdontologico {
 
     private String descripcion;
     private LocalDate fecha;
+    
 
     @ManyToOne
     @JoinColumn(name = "odontologo_id")
     private Odontologo odontologo;
 
     @ManyToOne
+    @JoinColumn(name = "diagnostico_id")
+    private Diagnostico diagnostico;
+
+    @ManyToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-    @OneToMany(mappedBy = "historialOdontologico")
-    private List<Radiografia> radiografias;
+    @ManyToOne
+    @JoinColumn(name = "radiografia_id")
+    private Radiografia radiografia;
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Odontólogos</title>
+</head>
+<body>
+    <h1>Lista de Odontólogos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Especialidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="odontologo : ${odontologos}">
+                <td th:text="${odontologo.id}"></td>
+                <td th:text="${odontologo.nombre}"></td>
+                <td th:text="${odontologo.especialidad}"></td>
+                <td>
+                    <a th:href="@{/odontologos/editar/{id}(id=${odontologo.id})}">Editar</a>
+                    <a th:href="@{/odontologos/eliminar/{id}(id=${odontologo.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/odontologos/nuevo">Nuevo Odontólogo</a>
+</body>
+</html>

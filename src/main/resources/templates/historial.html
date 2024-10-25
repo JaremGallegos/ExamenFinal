@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+    <header th:replace="~{fragmentos/header :: header}"></header>
+    <section class="container mt-4">
+        <h2>Agregar Historial Odontológico</h2>
+        <form action="#" th:action="@{/api/historiales}" th:object="${historialOdontologico}" method="post" class="border p-4 rounded">
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción:</label>
+                <textarea id="descripcion" th:field="*{descripcion}" class="form-control" rows="3"></textarea>
+            </div>
+        
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha:</label>
+                <input type="date" id="fecha" th:field="*{fecha}" class="form-control">
+            </div>
+        
+            <div class="mb-3">
+                <label for="diagnostico" class="form-label">Diagnóstico:</label>
+                <select id="diagnostico" th:field="*{diagnostico.id}" class="form-select">
+                    <option th:each="diagnostico : ${diagnosticos}" th:value="${diagnostico.id}" th:text="${diagnostico.descripcion}"></option>
+                </select>
+            </div>
+        
+            <div class="mb-3">
+                <label for="odontologo" class="form-label">Odontólogo:</label>
+                <select id="odontologo" th:field="*{odontologo.id}" class="form-select" required>
+                    <option value="" disabled selected>Seleccionar odontólogo</option>
+                    <option th:each="odont : ${odontologos}" th:value="${odont.id}" th:text="${odont.nombre}"></option>
+                </select>
+            </div>
+        
+            <div class="mb-3">
+                <label for="radiografia" class="form-label">Radiografía (URL):</label>
+                <input type="url" id="radiografia" th:field="*{radiografia.url}" class="form-control">
+            </div>
+        
+            <button type="submit" class="btn btn-success">Registrar Historial</button>
+        </form>
+    </section>
+
+    <section class="container mt-4">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Diagnóstico</th>
+                    <th>Odontólogo</th>
+                    <th>Radiografía</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="historial : ${historiales}">
+                    <td th:text="${historial.descripcion}"></td>
+                    <td th:text="${historial.fecha}"></td>
+                    <td th:text="${historial.diagnostico.nombre}"></td>
+                    <td th:text="${historial.odontologo.nombre}"></td>
+                    <td th:if="${historial.radiografia != null}">
+                        <a th:href="${historial.radiografia.url}" class="btn btn-info btn-sm">Ver Radiografía</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <footer th:replace="fragmentos/footer :: footer"></footer>
+    
+</body>
+</html>

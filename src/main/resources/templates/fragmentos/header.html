@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Pacientes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="navbar-nav">
+                    <a class="nav-link btn btn-primary" th:href="@{/pacientes}">Pacientes</a>
+                    <a class="nav-link btn btn-primary" th:href="@{/historiales}">Historial Odontológico</a>
+                    <a class="nav-link btn btn-primary" th:href="@{/atenciones}">Atenciones</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container mt-4">
