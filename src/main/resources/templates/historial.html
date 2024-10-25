@@ -17,7 +17,15 @@
                 <label for="fecha" class="form-label">Fecha:</label>
                 <input type="date" id="fecha" th:field="*{fecha}" class="form-control">
             </div>
-        
+            
+            <div class="mb-3">
+                <label for="paciente" class="form-label">Paciente:</label>
+                <select id="paciente" th:field="*{paciente.id}" class="form-select" required>
+                    <option value="" disabled selected>Seleccionar paciente</option>
+                    <option th:each="pac : ${pacientes}" th:value="${pac.id}" th:text="${pac.nombre}"></option>
+                </select>
+            </div>
+
             <div class="mb-3">
                 <label for="diagnostico" class="form-label">Diagnóstico:</label>
                 <select id="diagnostico" th:field="*{diagnostico.id}" class="form-select">
@@ -57,7 +65,8 @@
                 <tr th:each="historial : ${historiales}">
                     <td th:text="${historial.descripcion}"></td>
                     <td th:text="${historial.fecha}"></td>
-                    <td th:text="${historial.diagnostico.nombre}"></td>
+                    <td th:text="${historial.paciente != null ? historial.paciente.nombre : 'Sin Paciente'}"></td>
+                    <td th:text="${historial.diagnostico.descripcion}"></td>
                     <td th:text="${historial.odontologo.nombre}"></td>
                     <td th:if="${historial.radiografia != null}">
                         <a th:href="${historial.radiografia.url}" class="btn btn-info btn-sm">Ver Radiografía</a>

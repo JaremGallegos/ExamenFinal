@@ -1,31 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Odontólogos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <title>Sistema de Registro de Pacientes</title>
 </head>
 <body>
-    <h1>Lista de Odontólogos</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Especialidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="odontologo : ${odontologos}">
-                <td th:text="${odontologo.id}"></td>
-                <td th:text="${odontologo.nombre}"></td>
-                <td th:text="${odontologo.especialidad}"></td>
-                <td>
-                    <a th:href="@{/odontologos/editar/{id}(id=${odontologo.id})}">Editar</a>
-                    <a th:href="@{/odontologos/eliminar/{id}(id=${odontologo.id})}">Eliminar</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/odontologos/nuevo">Nuevo Odontólogo</a>
+    <div class="container text-center mt-5">
+        <h1 class="mb-4">Sistema de Registro de Pacientes</h1>
+        <a th:href="@{/historiales}" class="btn btn-primary btn-lg">Historial Medico</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

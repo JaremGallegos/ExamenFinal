@@ -11,22 +11,23 @@ import java.util.Optional;
 
 @Service
 public class OdontologoService {
+
     @Autowired
     private OdontologoRepository odontologoRepository;
 
-    public List<Odontologo> listarTodos() {
+    public List<Odontologo> listarOdontologos() {
         return odontologoRepository.findAll();
     }
 
-    public Optional<Odontologo> obtenerPorId(Long id) {
-        return odontologoRepository.findById(id);
-    }
-
-    public Odontologo guardar(Odontologo odontologo) {
+    public Odontologo registrarOdontologo(Odontologo odontologo) {
         return odontologoRepository.save(odontologo);
     }
 
-    public void eliminar(Long id) {
+    public Optional<Odontologo> obtenerOdontologoPorId(Long id) {
+        return odontologoRepository.findById(id);
+    }
+
+    public void eliminarOdontologo(Long id) {
         odontologoRepository.deleteById(id);
     }
 }

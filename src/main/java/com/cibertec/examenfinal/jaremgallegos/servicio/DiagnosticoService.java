@@ -1,6 +1,7 @@
 package com.cibertec.examenfinal.jaremgallegos.servicio;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,9 @@ public class DiagnosticoService {
 
     public Diagnostico registrarDiagnostico(Diagnostico diagnostico) {
         return diagnosticoRepository.save(diagnostico);
+    }
+
+    public Optional<Diagnostico> obtenerDiagnosticoPorId(Long id) {
+        return diagnosticoRepository.findById(id);
     }
 }

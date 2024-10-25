@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+<header th:replace="~{fragmentos/header :: header}"></header>
+<section class="container mt-4">
+    <h2>Registrar Odontólogo</h2>
+    <form th:action="@{/api/odontologos}" th:object="${odontologo}" method="post" class="border p-4 rounded">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" th:field="*{nombre}" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="especialidad">Especialidad:</label>
+            <input type="text" id="especialidad" th:field="*{especialidad}" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" th:field="*{telefono}" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" th:field="*{correo}" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" th:field="*{direccion}" class="form-control">
+        </div>
+        
+        <button type="submit" class="btn btn-success mt-2">Registrar</button>
+    </form>
+</section>
+
+<section class="container mt-4">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Especialidad</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="odontologo : ${odontologos}">
+                <td th:text="${odontologo.nombre}"></td>
+                <td th:text="${odontologo.especialidad}"></td>
+                <td th:text="${odontologo.telefono}"></td>
+                <td th:text="${odontologo.correo}"></td>
+                <td th:text="${odontologo.direccion}"></td>
+                <td>
+                    <a th:href="@{/odontologos/{id}(id=${odontologo.id})}" class="btn btn-primary btn-sm">Ver</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<footer th:replace="fragmentos/footer :: footer"></footer>
+</body>
+</html>

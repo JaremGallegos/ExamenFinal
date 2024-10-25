@@ -9,7 +9,7 @@
     <h2>Registrar Atención</h2>
     <form action="#" th:action="@{/api/atenciones}" th:object="${nuevoTratamiento}" method="post" class="border p-4 rounded">
         <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre del Tratamiento:</label>
+            <label for="nombre" class="form-label">Cita:</label>
             <input type="text" id="nombre" th:field="*{nombre}" class="form-control" />
         </div>
     
